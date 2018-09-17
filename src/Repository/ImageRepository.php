@@ -19,32 +19,12 @@ class ImageRepository extends ServiceEntityRepository
         parent::__construct($registry, Image::class);
     }
 
-//    /**
-//     * @return Image[] Returns an array of Image objects
-//     */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    public function findAllQueryBuilder(): \Doctrine\ORM\QueryBuilder
     {
-        return $this->createQueryBuilder('i')
-            ->andWhere('i.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('i.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        return $this->createQueryBuilder('image');
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Image
-    {
-        return $this->createQueryBuilder('i')
-            ->andWhere('i.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }
