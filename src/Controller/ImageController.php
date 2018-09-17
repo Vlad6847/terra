@@ -2,8 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Image;
-use Doctrine\ORM\EntityManager;
+use App\Service\ImageService;
 use Doctrine\ORM\EntityManagerInterface;
 use FOS\RestBundle\View\View;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -11,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use FOS\RestBundle\Controller\Annotations as FOSRest;
-
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /** @Route("/api", name="api_") */
 class ImageController extends AbstractController
@@ -21,23 +20,27 @@ class ImageController extends AbstractController
      * Post images info.
      * @FOSRest\Post("/images")
      *
-     * @param Request                $request
+     * @param Request $request
      *
      * @param EntityManagerInterface $em
      *
+     * @param ValidatorInterface $validator
+     *
+     * @param ImageService $imageService
+     *
      * @return View
      */
-    public function postImagesInfo(Request $request, EntityManagerInterface $em): View
-    {
-        $image = new Image();
-        $image->setTitle($request->get('title'));
-        $image->setDescription($request->get('description'));
-        $image->setAlbum($request->get('album_id'));
+    public function postImagesInfo(
+        Request $request,
+        EntityManagerInterface $em,
+        ValidatorInterface $validator,
+        ImageService $imageService
+    ): View {
 
-        $em->persist($image);
-        $em->flush();
+        $imageService->validateImageInfo($request, $validator);
+        $result = $imageService->postImageInfo($request, $em);
 
-        return View::create('Posted', Response::HTTP_CREATED , []);
+        return View::create($result, Response::HTTP_CREATED);
 
     }
 
@@ -49,22 +52,20 @@ class ImageController extends AbstractController
      *
      * @param EntityManagerInterface $em
      *
+     * @param ImageService           $imageService
+     *
      * @return View
      */
-    public function deleteImage($id, EntityManagerInterface $em): View
-    {
-        $repository = $this->getDoctrine()->getRepository(Image::class);
+    public function deleteImage(
+        $id,
+        EntityManagerInterface $em,
+        ImageService $imageService
+    ): View {
+        if ($imageService->deleteImage($id, $em)) {
 
-        $image = $repository->find($id);
-
-        if (null !== $image) {
-            $em->remove($image);
-            $em->flush();
-        } else {
-
-            return View::create('', Response::HTTP_NO_CONTENT, []);
+            return View::create(['result' => 'deleted'], Response::HTTP_ACCEPTED);
         }
 
-        return View::create('Deleted', Response::HTTP_ACCEPTED, []);
+        return View::create(['error' => 'Image with id = '.$id.' not found'], Response::HTTP_ACCEPTED);
     }
 }

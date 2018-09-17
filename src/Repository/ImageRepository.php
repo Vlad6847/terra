@@ -20,11 +20,16 @@ class ImageRepository extends ServiceEntityRepository
     }
 
     /**
+     * @param int $id
+     *
      * @return \Doctrine\ORM\QueryBuilder
      */
-    public function findAllQueryBuilder(): \Doctrine\ORM\QueryBuilder
+    public function findAllQueryBuilder(int $id): \Doctrine\ORM\QueryBuilder
     {
-        return $this->createQueryBuilder('image');
+        return $this
+            ->createQueryBuilder('image')
+            ->andWhere('image.album = :id')
+            ->setParameter('id', $id);
     }
 
 }
