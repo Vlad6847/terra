@@ -1,0 +1,219 @@
+{
+	"id": "267f2f45-f968-4895-2a93-1e3548826ffa",
+	"name": "Gallery",
+	"description": "",
+	"order": [],
+	"folders": [
+		{
+			"name": "Album",
+			"description": "",
+			"collectionId": "267f2f45-f968-4895-2a93-1e3548826ffa",
+			"order": [
+				"3925e39b-7966-82a0-b5fb-96f2dc15f3c4",
+				"c4d78c5a-47e3-11dd-68c1-75603c05c8f5",
+				"f739020c-fdf0-679c-9e6e-8b6fbf83465e",
+				"288601b9-10e6-1dca-a870-2cc54cef132b"
+			],
+			"owner": 0,
+			"folders_order": [],
+			"id": "497203b3-f10b-0ad8-c72f-0dad63227664"
+		},
+		{
+			"name": "Image",
+			"description": "",
+			"collectionId": "267f2f45-f968-4895-2a93-1e3548826ffa",
+			"order": [
+				"d97ce01e-bc8e-de93-a37c-d0edfcb031e7",
+				"941c055d-e154-be1f-aa7c-600f5ac1c9dc"
+			],
+			"owner": 0,
+			"folders_order": [],
+			"id": "d7518d0a-c0af-c1c5-60dc-f61befa509ec"
+		}
+	],
+	"folders_order": [
+		"497203b3-f10b-0ad8-c72f-0dad63227664",
+		"d7518d0a-c0af-c1c5-60dc-f61befa509ec"
+	],
+	"timestamp": 1536927974984,
+	"owner": 0,
+	"public": false,
+	"requests": [
+		{
+			"id": "288601b9-10e6-1dca-a870-2cc54cef132b",
+			"headers": "",
+			"headerData": [],
+			"url": "localhost/api/album/6",
+			"folder": "497203b3-f10b-0ad8-c72f-0dad63227664",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "DELETE",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1537212568048,
+			"name": "Delete album",
+			"description": "",
+			"collectionId": "267f2f45-f968-4895-2a93-1e3548826ffa",
+			"responses": []
+		},
+		{
+			"id": "3925e39b-7966-82a0-b5fb-96f2dc15f3c4",
+			"headers": "",
+			"headerData": [],
+			"url": "localhost/api",
+			"folder": "497203b3-f10b-0ad8-c72f-0dad63227664",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1536999546708,
+			"name": "List of albums",
+			"description": "",
+			"collectionId": "267f2f45-f968-4895-2a93-1e3548826ffa",
+			"responses": []
+		},
+		{
+			"id": "941c055d-e154-be1f-aa7c-600f5ac1c9dc",
+			"headers": "",
+			"headerData": [],
+			"url": "localhost/api/images",
+			"folder": "d7518d0a-c0af-c1c5-60dc-f61befa509ec",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "title",
+					"value": "Cars",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "description",
+					"value": "Test description",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "album_id",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1537212652930,
+			"name": "Post image",
+			"description": "",
+			"collectionId": "267f2f45-f968-4895-2a93-1e3548826ffa",
+			"responses": []
+		},
+		{
+			"id": "c4d78c5a-47e3-11dd-68c1-75603c05c8f5",
+			"headers": "",
+			"headerData": [],
+			"url": "localhost/api/album/2?page=1",
+			"folder": "497203b3-f10b-0ad8-c72f-0dad63227664",
+			"queryParams": [
+				{
+					"key": "page",
+					"value": "1",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1537212528520,
+			"name": "Get album",
+			"description": "",
+			"collectionId": "267f2f45-f968-4895-2a93-1e3548826ffa",
+			"responses": []
+		},
+		{
+			"id": "d97ce01e-bc8e-de93-a37c-d0edfcb031e7",
+			"headers": "",
+			"headerData": [],
+			"url": "localhost/api/image/107",
+			"folder": "d7518d0a-c0af-c1c5-60dc-f61befa509ec",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "DELETE",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1537212671869,
+			"name": "Delete image",
+			"description": "",
+			"collectionId": "267f2f45-f968-4895-2a93-1e3548826ffa",
+			"responses": []
+		},
+		{
+			"id": "f739020c-fdf0-679c-9e6e-8b6fbf83465e",
+			"headers": "",
+			"headerData": [],
+			"url": "localhost/api/album",
+			"folder": "497203b3-f10b-0ad8-c72f-0dad63227664",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "title",
+					"value": "Cars",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1537212548714,
+			"name": "Post album",
+			"description": "",
+			"collectionId": "267f2f45-f968-4895-2a93-1e3548826ffa",
+			"responses": []
+		}
+	]
+}
