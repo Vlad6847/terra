@@ -192,7 +192,7 @@ class AlbumService
         if (null !== $album) {
             $em->remove($album);
             $em->flush();
-            $result['result'] = 'Deleted';
+            $result['result'] = 'deleted';
         } else {
             $result['error'] = 'Album with id = '.$id.' does not exists!';
         }

@@ -66,13 +66,18 @@ class ImageService
      * @param Request                $request
      * @param EntityManagerInterface $em
      *
-     * @return Image
+     * @return Image|array
      */
     public function postImageInfo(
         Request $request,
         EntityManagerInterface $em
-    ): Image {
+    ) {
         $album = $this->albumRepository->find($request->get('album_id'));
+
+        if (null === $album) {
+            return ['error' => 'Album with id = '.$request->get('album_id').' does not exist!'];
+        }
+
         $image = new Image();
         $image->setTitle($request->get('title'));
         $image->setDescription($request->get('description') ?? '');
