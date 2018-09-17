@@ -7,3 +7,5 @@
 5. bin/console d:make:m
 6. bin/console d:f:l
 7. http://localhost/api
+
+Use Gallery.postman_collection.json 
