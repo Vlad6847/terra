@@ -12,9 +12,11 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use FOS\RestBundle\View\View;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Exception\NotValidCurrentPageException;
 use Pagerfanta\Pagerfanta;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class AlbumService
@@ -108,9 +110,15 @@ class AlbumService
         $adapter    = new DoctrineORMAdapter($qb);
         $pagerfanta = new Pagerfanta($adapter);
 
-        $pagerfanta->setMaxPerPage($maxImagesFromDB)
-                   ->setCurrentPage($page);
 
+        $pagerfanta->setMaxPerPage($maxImagesFromDB);
+
+        try  {
+            $pagerfanta->setCurrentPage($page);
+        }
+        catch(NotValidCurrentPageException $e) {
+            throw new NotFoundHttpException('Illegal page');
+        }
 
         $result = [];
 
